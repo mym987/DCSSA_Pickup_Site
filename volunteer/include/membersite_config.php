@@ -15,7 +15,7 @@ $fgmembersite->SetAdminEmail('dcssa2016@gmail.com');
 //by itself on submitting register.php for the first time
 $fgmembersite->InitDB(/*hostname*/'localhost',
                       /*username*/'user',
-                      /*password*/'qwertyuiop[]',
+                      /*password*/'user',
                       /*database name*/'pickup',
                       /*table name*/'users');
 
