@@ -190,6 +190,14 @@ class FGMembersite
         header("Location: $url");
         exit;
     }
+
+    function GetParentURL(){
+        $url  = isset($_SERVER['HTTPS']) ? 'https://' : 'http://';
+        $url .= $_SERVER['HTTP_HOST'];
+        $url .= $_SERVER['REQUEST_URI'];
+
+        return dirname($url);
+    }
     
     function GetSpamTrapInputName()
     {

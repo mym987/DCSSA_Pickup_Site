@@ -129,7 +129,7 @@ if(isset($_POST['submitted']))
 </div>
 
 <div class='container'>
-    <label for='numc' >行李信息(e.g.2个158cm，1个115cm，1个书包)*:</label><br/>
+    <label for='numc' >行李信息(e.g.2x158cm，1x115cm，1 backpack)*:</label><br/>
     <input type='text' name='numc' id='numc' value='<?php echo $fgmembersite->SafeDisplay('numc') ?>' maxlength="50" /><br/>
     <span id='register_numc_errorloc' class='error'></span>
 </div>
@@ -145,7 +145,7 @@ if(isset($_POST['submitted']))
     <input type='text' name='wechat' id='wechat' value='<?php echo $fgmembersite->SafeDisplay('wechat') ?>' maxlength="50" /><br/>
     <span id='register_wechat_errorloc' class='error'></span>
 </div>
-<div class='short_explanation'>请再次检查是否全部用英文填写</div>
+<div class='intro'>请再次检查是否全部用英文填写</div>
 <div class='container'>
     <input type='submit' name='Submit' value='提交(Submit)' />
 </div>
@@ -175,10 +175,6 @@ Uses the excellent form validation script from JavaScript-coder.com-->
 
 // ]]>
 </script>
-
-<!--
-Form Code End (see html-form-guide.com for more info.)
--->
 
 </body>
 </html>

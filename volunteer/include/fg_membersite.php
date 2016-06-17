@@ -797,7 +797,7 @@ class FGMembersite
         $url .= $_SERVER['HTTP_HOST'];
         $url .= $_SERVER['REQUEST_URI'];
 
-        return dirname(dirname($url));
+        return dirname($url);
     }
     
     function SendAdminIntimationEmail(&$formvars)
