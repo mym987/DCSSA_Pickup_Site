@@ -31,6 +31,7 @@ if(isset($_POST['submitted']))
 <input type='hidden' name='submitted' id='submitted' value='1'/>
 
 <div class='short_explanation'>* required fields</div>
+<div>为确保正确记录信息，请使用英文填写！</div>
 <input type='text'  class='spmhidip' name='<?php echo $fgmembersite->GetSpamTrapInputName(); ?>' />
 
 <div><span class='error'><?php echo $fgmembersite->GetErrorMessage(); ?></span></div>
@@ -87,6 +88,8 @@ if(isset($_POST['submitted']))
     <input type='text' name='qq' id='qq' value='<?php echo $fgmembersite->SafeDisplay('qq') ?>' maxlength="50" /><br/>
     <span id='register_qq_errorloc' class='error'></span>
 </div>
+
+<div>请再次确认表单已全部用英文填写</div>
 
 <div class='container'>
     <input type='submit' name='Submit' value='Submit' />
