@@ -78,14 +78,14 @@ class FGMembersite
         }
         $mail->isSMTP();
         $mail->SMTPDebug  = 0;
-        $mail->Host       = "just36.justhost.com";
-        $mail->Port       = "465";
-        $mail->SMTPSecure = "ssl";
+        $mail->Host       = "smtp.gmail.com";
+        $mail->Port       = "587";
+        $mail->SMTPSecure = "tls";
         $mail->SMTPAuth   = true;
-        $mail->Username   = "noreply@dukechina.org";
-        $mail->Password   = "g.-hKV8X|ic*";
-        $mail->addReplyTo("noreply@dukechina.org", "DCSSA");
-        $mail->setFrom("noreply@dukechina.org", "DCSSA");
+        $mail->Username   = "dcssa2016@gmail.com";
+        $mail->Password   = "dqpenfuhmgpxnykg";
+        $mail->addReplyTo("ym67@duke.edu", "DCSSA");
+        $mail->setFrom("dcssa2016@gmail.com", "DCSSA");
         $mail->addAddress($target, $name);
         $mail->Subject  = $subject;
         $mail->WordWrap = 78;
