@@ -117,7 +117,7 @@ if(isset($_POST['submitted']))
 </div>
 
 <div class='container'>
-    <label for='flight' >航班号(Flight no.)*:</label><br/>
+    <label for='flight' >航班号(e.g. MU999)*:</label><br/>
     <input type='text' name='flight' id='flight' value='<?php echo $fgmembersite->SafeDisplay('flight') ?>' maxlength="20" /><br/>
     <span id='register_flight_errorloc' class='error'></span>
 </div>
@@ -129,7 +129,7 @@ if(isset($_POST['submitted']))
 </div>
 
 <div class='container'>
-    <label for='numc' >行李信息(e.g.2x158cm，1x115cm，1 backpack)*:</label><br/>
+    <label for='numc' >行李信息(e.g.2x158cm,1x115cm,1 backpack)*:</label><br/>
     <input type='text' name='numc' id='numc' value='<?php echo $fgmembersite->SafeDisplay('numc') ?>' maxlength="50" /><br/>
     <span id='register_numc_errorloc' class='error'></span>
 </div>
