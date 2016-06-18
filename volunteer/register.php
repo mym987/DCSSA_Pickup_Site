@@ -31,7 +31,6 @@ if(isset($_POST['submitted']))
 <input type='hidden' name='submitted' id='submitted' value='1'/>
 
 <div class='short_explanation'>* required fields</div>
-<div>为确保正确记录信息，请使用英文填写！</div>
 <input type='text'  class='spmhidip' name='<?php echo $fgmembersite->GetSpamTrapInputName(); ?>' />
 
 <div><span class='error'><?php echo $fgmembersite->GetErrorMessage(); ?></span></div>
@@ -89,8 +88,6 @@ if(isset($_POST['submitted']))
     <span id='register_qq_errorloc' class='error'></span>
 </div>
 
-<div>请再次确认表单已全部用英文填写</div>
-
 <div class='container'>
     <input type='submit' name='Submit' value='Submit' />
 </div>
@@ -109,13 +106,9 @@ Uses the excellent form validation script from JavaScript-coder.com-->
     frmvalidator.EnableOnPageErrorDisplay();
     frmvalidator.EnableMsgsTogether();
     frmvalidator.addValidation("name","req","Please provide your name");
-
     frmvalidator.addValidation("email","req","Please provide your email address");
-
     frmvalidator.addValidation("email","email","Please provide a valid email address");
-
     frmvalidator.addValidation("username","req","Please provide a username");
-    
     frmvalidator.addValidation("password","req","Please provide a password");
 
 // ]]>

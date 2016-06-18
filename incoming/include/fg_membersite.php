@@ -74,7 +74,7 @@ class FGMembersite
         $mail->msgHTML($body, dirname(__FILE__), true); //Create message bodies and embed images
          
         try {
-          $mail->send();
+          //$mail->send();
           return true;
           //$results_messages[] = "Message has been sent using SMTP";
         }
@@ -550,6 +550,7 @@ class FGMembersite
                 "' . $this->SanitizeForSQL($formvars['wechat']) . '",
                 "' . $confirmcode . '"
                 )';      
+        echo $insert_query;
         if(!mysql_query( $insert_query ,$this->connection))
         {
             $this->HandleDBError("Error inserting data to the table\nquery:$insert_query");
