@@ -141,7 +141,7 @@ if(isset($_POST['submitted']))
 </div>
 
 <div class='container'>
-    <label for='wechat' >微信/QQ号(请注明):</label><br/>
+    <label for='wechat' >微信/QQ号(请注明)*:</label><br/>
     <input type='text' name='wechat' id='wechat' value='<?php echo $fgmembersite->SafeDisplay('wechat') ?>' maxlength="50" /><br/>
     <span id='register_wechat_errorloc' class='error'></span>
 </div>
@@ -157,21 +157,20 @@ Uses the excellent form validation script from JavaScript-coder.com-->
 
 <script type='text/javascript'>
 // <![CDATA[
-    var pwdwidget = new PasswordWidget('thepwddiv','password');
-    pwdwidget.MakePWDWidget();
     
     var frmvalidator  = new Validator("register");
     frmvalidator.EnableOnPageErrorDisplay();
     frmvalidator.EnableMsgsTogether();
-    frmvalidator.addValidation("name","req","Please provide your name");
 
-    frmvalidator.addValidation("email","req","Please provide your email address");
-
-    frmvalidator.addValidation("email","email","Please provide a valid email address");
-
-    //frmvalidator.addValidation("username","req","Please provide a username");
-    
-    //frmvalidator.addValidation("password","req","Please provide a password");
+    frmvalidator.addValidation("name","req","请填写姓名");
+    frmvalidator.addValidation("email","req","请填写Email");
+    frmvalidator.addValidation("date","req","请填写抵达日期");
+    frmvalidator.addValidation("time","req","请填写抵达时间");
+    frmvalidator.addValidation("flight","req","请填写航班号");
+    frmvalidator.addValidation("nump","req","请填写需接机人数");
+    frmvalidator.addValidation("numc","req","请填写行李信息");
+    frmvalidator.addValidation("contact","req","请填写电话号码");
+    frmvalidator.addValidation("wechat","req","请填写微信/QQ（至少一个）");
 
 // ]]>
 </script>

@@ -1,23 +1,5 @@
 <?PHP
-/*
-    Registration/Login script from HTML Form Guide
-    V1.0
 
-    This program is free software published under the
-    terms of the GNU Lesser General Public License.
-    http://www.gnu.org/copyleft/lesser.html
-    
-
-This program is distributed in the hope that it will
-be useful - WITHOUT ANY WARRANTY; without even the
-implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.
-
-For updates, please visit:
-http://www.html-form-guide.com/php-form/php-registration-form.html
-http://www.html-form-guide.com/php-form/php-login-form.html
-
-*/
 require_once("PHPMailerAutoload.php");
 require_once("formvalidator.php");
 
@@ -92,7 +74,7 @@ class FGMembersite
         $mail->msgHTML($body, dirname(__FILE__), true); //Create message bodies and embed images
          
         try {
-          $mail->send();
+          //$mail->send();
           return true;
           //$results_messages[] = "Message has been sent using SMTP";
         }
@@ -344,9 +326,16 @@ class FGMembersite
         }
         
         $validator = new FormValidator();
-        $validator->addValidation("name","req","Please fill in Name");
-        $validator->addValidation("email","email","The input for Email should be a valid email value");
-        $validator->addValidation("email","req","Please fill in Email");
+        $validator->addValidation("name","req","请填写姓名");
+        $validator->addValidation("email","req","请填写Email");
+        $validator->addValidation("date","req","请填写抵达日期");
+        $validator->addValidation("time","req","请填写抵达时间");
+        $validator->addValidation("flight","req","请填写航班号");
+        $validator->addValidation("nump","req","请填写需接机人数");
+        $validator->addValidation("numc","req","请填写行李信息");
+        $validator->addValidation("contact","req","请填写电话号码");
+        $validator->addValidation("wechat","req","请填写微信/QQ（至少一个）");
+        $validator->addValidation("email","duke_email","请提供一个以 @duke.edu 结尾的邮箱");
 
         
         if(!$validator->ValidateForm())
@@ -355,7 +344,8 @@ class FGMembersite
             $error_hash = $validator->GetErrors();
             foreach($error_hash as $inpname => $inp_err)
             {
-                $error .= $inpname.':'.$inp_err."\n";
+                //$error .= $inpname.':'.$inp_err."\n";
+                $error .= $inp_err."\n";
             }
             $this->HandleError($error);
             return false;
@@ -365,6 +355,7 @@ class FGMembersite
     
     function CollectRegistrationSubmission(&$formvars)
     {
+        //$formvars['ts'] = $_SERVER['REQUEST_TIME'];
         $formvars['name'] = $this->Sanitize($_POST['name']);
         $formvars['email'] = $this->Sanitize($_POST['email']);
         $formvars['gender'] = $this->Sanitize($_POST['gender']);
@@ -494,6 +485,7 @@ class FGMembersite
     {
         $qry = "Create Table $this->tablename (".
                 "id_user INT NOT NULL AUTO_INCREMENT ,".
+                "ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,".
                 "name VARCHAR( 128 ) NOT NULL ,".
                 "email VARCHAR( 64 ) NOT NULL ,".
                 "gender VARCHAR( 16 ),".
@@ -526,6 +518,7 @@ class FGMembersite
         
         $formvars['confirmcode'] = $confirmcode;
         
+        //date('Y-m-d H:i:s',$formvars['ts'])
         $insert_query = 'insert into '.$this->tablename.'(
                 name,
                 email,
