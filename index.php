@@ -17,7 +17,7 @@ $volunteer->LogOut();
 <h2>DCSSA新生接机管理</h2>
 <ul>
 <li><a href='incoming/register.php'>新生注册(Incoming Student Registration)</a></li>
-<!--<li><a href='incoming/confirmreg.php'>新生注册确认(Student Confirmation)</a></li>-->
+<li><a href='incoming/viewer.php'>查询新生注册信息(Check Student Registration)</a></li>
 <li><a href='volunteer/register.php'>志愿者注册(Volunteer Registration)</a></li>
 <li><a href='volunteer/login.php'>志愿者登陆(Volunteer Login)</a></li>
 </ul>
