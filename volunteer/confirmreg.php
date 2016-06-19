@@ -1,11 +1,11 @@
 <?PHP
-require_once("./include/membersite_config.php");
+require_once("./include/volunteer.php");
 
 if(isset($_GET['code']) && isset($_GET['email']))
 {
-   if($fgmembersite->ConfirmUser())
+   if($volunteer->ConfirmUser())
    {
-        $fgmembersite->RedirectToURL("thank-you-regd.html");
+        $volunteer->RedirectToURL("thank-you-regd.html");
    }
 }
 
@@ -29,7 +29,7 @@ Please enter the confirmation code in the box below
 <div id='fg_membersite'>
 <form id='confirm' action='' method='get' accept-charset='UTF-8'>
 <div class='short_explanation'>* required fields</div>
-<div><span class='error'><?php echo $fgmembersite->GetErrorMessage(); ?></span></div>
+<div><span class='error'><?php echo $volunteer->GetErrorMessage(); ?></span></div>
 <div class='container'>
     <label for='email' >Email Address:* </label><br/>
     <input type='text' name='email' id='email' maxlength="50" /><br/>

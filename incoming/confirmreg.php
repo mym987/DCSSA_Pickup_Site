@@ -1,11 +1,11 @@
 <?PHP
-require_once("./include/membersite_config.php");
+require_once("./include/student.php");
 
 if(isset($_GET['code']))
 {
-   if($fgmembersite->ConfirmUser())
+   if($student->ConfirmUser())
    {
-        $fgmembersite->RedirectToURL("thank-you-regd.html");
+        $student->RedirectToURL("thank-you-regd.html");
    }
 }
 
@@ -27,9 +27,9 @@ Please enter the confirmation code in the box below
 
 <!-- Form Code Start -->
 <div id='fg_membersite'>
-<form id='confirm' action='<?php echo $fgmembersite->GetSelfScript(); ?>' method='get' accept-charset='UTF-8'>
+<form id='confirm' action='<?php echo $student->GetSelfScript(); ?>' method='get' accept-charset='UTF-8'>
 <div class='short_explanation'>* required fields</div>
-<div><span class='error'><?php echo $fgmembersite->GetErrorMessage(); ?></span></div>
+<div><span class='error'><?php echo $student->GetErrorMessage(); ?></span></div>
 <div class='container'>
     <label for='code' >Confirmation Code:* </label><br/>
     <input type='text' name='code' id='code' maxlength="50" /><br/>

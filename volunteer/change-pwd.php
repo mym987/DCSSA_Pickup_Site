@@ -1,17 +1,17 @@
 <?PHP
-require_once("./include/membersite_config.php");
+require_once("./include/volunteer.php");
 
-if(!$fgmembersite->CheckLogin())
+if(!$volunteer->CheckLogin())
 {
-    $fgmembersite->RedirectToURL("login.php");
+    $volunteer->RedirectToURL("login.php");
     exit;
 }
 
 if(isset($_POST['submitted']))
 {
-   if($fgmembersite->ChangePassword())
+   if($volunteer->ChangePassword())
    {
-        $fgmembersite->RedirectToURL("changed-pwd.html");
+        $volunteer->RedirectToURL("changed-pwd.html");
    }
 }
 
@@ -30,7 +30,7 @@ if(isset($_POST['submitted']))
 
 <!-- Form Code Start -->
 <div id='fg_membersite'>
-<form id='changepwd' action='<?php echo $fgmembersite->GetSelfScript(); ?>' method='post' accept-charset='UTF-8'>
+<form id='changepwd' action='<?php echo $volunteer->GetSelfScript(); ?>' method='post' accept-charset='UTF-8'>
 <fieldset >
 <legend>Change Password</legend>
 
@@ -38,7 +38,7 @@ if(isset($_POST['submitted']))
 
 <div class='short_explanation'>* required fields</div>
 
-<div><span class='error'><?php echo $fgmembersite->GetErrorMessage(); ?></span></div>
+<div><span class='error'><?php echo $volunteer->GetErrorMessage(); ?></span></div>
 <div class='container'>
     <label for='oldpwd' >Old Password*:</label><br/>
     <div class='pwdwidgetdiv' id='oldpwddiv' ></div><br/>

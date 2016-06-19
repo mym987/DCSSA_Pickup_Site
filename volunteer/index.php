@@ -1,7 +1,7 @@
 <?PHP
-require_once("./include/membersite_config.php");
+require_once("./include/volunteer.php");
 
-$fgmembersite->RedirectToURL($fgmembersite->GetParentURL());
+$volunteer->RedirectToURL($volunteer->GetParentURL());
 exit;    
 
 ?>

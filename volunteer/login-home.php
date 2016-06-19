@@ -1,9 +1,9 @@
 <?PHP
-require_once("./include/membersite_config.php");
+require_once("./include/volunteer.php");
 
-if(!$fgmembersite->CheckLogin())
+if(!$volunteer->CheckLogin())
 {
-    $fgmembersite->RedirectToURL("login.php");
+    $volunteer->RedirectToURL("login.php");
     exit;
 }
 
@@ -18,7 +18,7 @@ if(!$fgmembersite->CheckLogin())
 <body>
 <div id='fg_membersite_content'>
 <h2>DCSSA Airport Pickup Manager</h2>
-Welcome back <?= $fgmembersite->UserFullName(); ?>!
+Welcome back <?= $volunteer->UserFullName(); ?>!
 
 <p><a href='change-pwd.php'>修改密码(Change password)</a></p>
 

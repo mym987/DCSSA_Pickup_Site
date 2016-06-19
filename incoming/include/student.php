@@ -2,50 +2,41 @@
 
 require_once("PHPMailerAutoload.php");
 require_once("formvalidator.php");
+$student = new Student("conf_student.ini");
 
-class FGMembersite
+class Student
 {
-    var $admin_email;
-    var $from_address;
     
-    var $username;
-    var $pwd;
-    var $database;
-    var $tablename;
     var $connection;
-    var $rand_key;
     
     var $error_message;
     
     //-----Initialization -------
-    function FGMembersite()
+    function Student($conf_ini)
     {
-        $this->sitename = 'YourWebsiteName.com';
-        $this->rand_key = '0iQx5oBk66oVZep';
-    }
-    
-    function InitDB($host,$uname,$pwd,$database,$tablename)
-    {
-        $this->db_host  = $host;
-        $this->username = $uname;
-        $this->pwd  = $pwd;
-        $this->database  = $database;
-        $this->tablename = $tablename;
-        
-    }
-    function SetAdminEmail($email)
-    {
-        $this->admin_email = $email;
-    }
-    
-    function SetWebsiteName($sitename)
-    {
-        $this->sitename = $sitename;
-    }
-    
-    function SetRandomKey($key)
-    {
-        $this->rand_key = $key;
+        $conf = parse_ini_file($conf_ini, true);
+
+        $this->sitename = $conf['web']['name'];
+        $this->admin_email = $conf['web']['email'];
+        $this->rand_key = $conf['web']['key'];
+
+        $this->db_host  = $conf['db']['hostname'];
+        $this->username = $conf['db']['username'];
+        $this->pwd      = $conf['db']['password'];
+        $this->database  = $conf['db']['dbname'];
+        $this->tablename = $conf['db']['tablename'];
+
+
+        $this->email_host  = $conf['email']['host'];
+        $this->email_port  = $conf['email']['port'];
+        $this->email_secure  = $conf['email']['secure'];
+        $this->email_username  = $conf['email']['username'];
+        $this->email_password  = $conf['email']['password'];
+        $this->email_reply_name  = $conf['email']['reply_name'];
+        $this->email_reply_addr  = $conf['email']['reply_addr'];
+        $this->email_from_name  = $conf['email']['from_name'];
+        $this->email_from_addr  = $conf['email']['from_addr'];
+
     }
 
     function Email($target,$name,$subject,$body){
@@ -60,21 +51,21 @@ class FGMembersite
         }
         $mail->isSMTP();
         $mail->SMTPDebug  = 0;
-        $mail->Host       = "smtp.gmail.com";
-        $mail->Port       = "587";
-        $mail->SMTPSecure = "tls";
+        $mail->Host       = $this->email_host;
+        $mail->Port       = $this->email_port;
+        $mail->SMTPSecure = $this->email_secure;
         $mail->SMTPAuth   = true;
-        $mail->Username   = "dcssa2016@gmail.com";
-        $mail->Password   = "dqpenfuhmgpxnykg";
-        $mail->addReplyTo("ym67@duke.edu", "DCSSA");
-        $mail->setFrom("dcssa2016@gmail.com", "DCSSA");
+        $mail->Username   = $this->email_username;
+        $mail->Password   = $this->email_password;
+        $mail->addReplyTo($this->email_reply_addr, $this->email_reply_name);
+        $mail->setFrom($this->email_from_addr, $this->email_from_name);
         $mail->addAddress($target, $name);
         $mail->Subject  = $subject;
         $mail->WordWrap = 78;
         $mail->msgHTML($body, dirname(__FILE__), true); //Create message bodies and embed images
          
         try {
-          //$mail->send();
+          $mail->send();
           return true;
           //$results_messages[] = "Message has been sent using SMTP";
         }
@@ -206,19 +197,6 @@ class FGMembersite
     {
         $this->HandleError($err."<br/> mysqlerror:".mysql_error());
     }
-    
-    function GetFromAddress()
-    {
-        if(!empty($this->from_address))
-        {
-            return $this->from_address;
-        }
-
-        $host = $_SERVER['SERVER_NAME'];
-
-        $from ="nobody@$host";
-        return $from;
-    } 
     
     function UpdateDBRecForConfirmation(&$user_rec)
     {
@@ -501,7 +479,7 @@ class FGMembersite
                 "volunteer VARCHAR( 128 ),".
                 "confirmcode VARCHAR(32) ,".
                 "PRIMARY KEY ( id_user )".
-                ")";
+                ")DEFAULT CHARSET=utf8";  
                 
         if(!mysql_query($qry,$this->connection))
         {
@@ -550,7 +528,6 @@ class FGMembersite
                 "' . $this->SanitizeForSQL($formvars['wechat']) . '",
                 "' . $confirmcode . '"
                 )';      
-        echo $insert_query;
         if(!mysql_query( $insert_query ,$this->connection))
         {
             $this->HandleDBError("Error inserting data to the table\nquery:$insert_query");

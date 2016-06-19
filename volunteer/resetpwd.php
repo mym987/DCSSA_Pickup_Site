@@ -1,8 +1,8 @@
 <?PHP
-require_once("./include/membersite_config.php");
+require_once("./include/volunteer.php");
 
 $success = false;
-if($fgmembersite->ResetPassword())
+if($volunteer->ResetPassword())
 {
     $success=true;
 }
@@ -27,7 +27,7 @@ Your new password is sent to your email address.
 }else{
 ?>
 <h2>Error</h2>
-<span class='error'><?php echo $fgmembersite->GetErrorMessage(); ?></span>
+<span class='error'><?php echo $volunteer->GetErrorMessage(); ?></span>
 <?php
 }
 ?>

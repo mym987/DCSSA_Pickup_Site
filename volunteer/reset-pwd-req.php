@@ -1,12 +1,12 @@
 <?PHP
-require_once("./include/membersite_config.php");
+require_once("./include/volunteer.php");
 
 $emailsent = false;
 if(isset($_POST['submitted']))
 {
-   if($fgmembersite->EmailResetPasswordLink())
+   if($volunteer->EmailResetPasswordLink())
    {
-        $fgmembersite->RedirectToURL("reset-pwd-link-sent.html");
+        $volunteer->RedirectToURL("reset-pwd-link-sent.html");
         exit;
    }
 }
@@ -23,7 +23,7 @@ if(isset($_POST['submitted']))
 <body>
 <!-- Form Code Start -->
 <div id='fg_membersite'>
-<form id='resetreq' action='<?php echo $fgmembersite->GetSelfScript(); ?>' method='post' accept-charset='UTF-8'>
+<form id='resetreq' action='<?php echo $volunteer->GetSelfScript(); ?>' method='post' accept-charset='UTF-8'>
 <fieldset >
 <legend>Reset Password</legend>
 
@@ -31,10 +31,10 @@ if(isset($_POST['submitted']))
 
 <div class='short_explanation'>* required fields</div>
 
-<div><span class='error'><?php echo $fgmembersite->GetErrorMessage(); ?></span></div>
+<div><span class='error'><?php echo $volunteer->GetErrorMessage(); ?></span></div>
 <div class='container'>
     <label for='username' >Your Email*:</label><br/>
-    <input type='text' name='email' id='email' value='<?php echo $fgmembersite->SafeDisplay('email') ?>' maxlength="50" /><br/>
+    <input type='text' name='email' id='email' value='<?php echo $volunteer->SafeDisplay('email') ?>' maxlength="50" /><br/>
     <span id='resetreq_email_errorloc' class='error'></span>
 </div>
 <div class='short_explanation'>A link to reset your password will be sent to the email address</div>

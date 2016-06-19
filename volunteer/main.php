@@ -1,15 +1,15 @@
 <?PHP
-require_once("./include/membersite_config.php");
+require_once("./include/volunteer.php");
 
-if(!$fgmembersite->CheckLogin())
+if(!$volunteer->CheckLogin())
 {
-    $fgmembersite->RedirectToURL("login.php");
+    $volunteer->RedirectToURL("login.php");
     exit;
 }
 if(isset($_POST['submit'])){
 	if (!empty($_POST['check_list'])){
-		if ($fgmembersite->PairStudent()){
-			$fgmembersite->RedirectToURL("thank-you-volunteer.html");
+		if ($volunteer->PairStudent()){
+			$volunteer->RedirectToURL("thank-you-volunteer.html");
 		}
 	} else {
 		echo "<b>Please Select at Least One Option.</b>";
@@ -31,8 +31,8 @@ if(isset($_POST['submit'])){
 
 
 <?php
-if(!$fgmembersite->DBLogin()){
-   $fgmembersite->HandleError("Database login failed!");
+if(!$volunteer->DBLogin()){
+   $volunteer->HandleError("Database login failed!");
    exit;
 }
 echo "<form id='main' action='' method='post' accept-charset='UTF-8'>";
@@ -47,8 +47,8 @@ echo "<table id='main' border='0' cellpadding='0' cellspacing='0' class='table-f
 <th>我要接这名学生</th>
 </tr>";
 
-$qry = "Select * from $fgmembersite->table_stu where confirmcode='y' and volunteer is null";
-$result = mysql_query($qry,$fgmembersite->connection);
+$qry = "Select * from $volunteer->table_stu where confirmcode='y' and volunteer is null";
+$result = mysql_query($qry,$volunteer->connection);
 $count = 0;
 while($row = mysql_fetch_array($result) ) {
 	$count = $count + 1;
@@ -72,9 +72,9 @@ echo "<p>*点击提交后，您和待接机的学生都会收到邮件</p>";
 echo "</form>";
 ?> 
 
-<div><span class='error'><?php echo $fgmembersite->GetErrorMessage(); ?></span></div>
+<div><span class='error'><?php echo $volunteer->GetErrorMessage(); ?></span></div>
 <p>
-Logged in as: <?= $fgmembersite->UserFullName() ?>
+Logged in as: <?= $volunteer->UserFullName() ?>
 </p>
 <p>
 <a href='login-home.php'>Home</a>

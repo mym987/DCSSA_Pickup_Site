@@ -1,5 +1,5 @@
 <?PHP
-require_once("./include/membersite_config.php");
+require_once("./include/volunteer.php");
 $vars = array();
 $vars['target'] = "mym987@gmail.com";
 $vars['name'] = "Mike";
@@ -9,5 +9,5 @@ $vars['body'] = "Hello "."mym987@gmail.com"."<br/>".
         "<br/>".
         "Regards,<br/>".
         "Webmaster<br/>";
-$fgmembersite->Email($vars['target'],$vars['name'],$vars['subject'],$vars['body']);
+$volunteer->Email($vars['target'],$vars['name'],$vars['subject'],$vars['body']);
 ?>

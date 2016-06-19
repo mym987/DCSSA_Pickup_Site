@@ -1,11 +1,11 @@
 <?PHP
-require_once("./include/membersite_config.php");
+require_once("./include/volunteer.php");
 
 if(isset($_POST['submitted']))
 {
-   if($fgmembersite->RegisterUser())
+   if($volunteer->RegisterUser())
    {
-        $fgmembersite->RedirectToURL("thank-you.html");
+        $volunteer->RedirectToURL("thank-you.html");
    }
 }
 
@@ -24,19 +24,19 @@ if(isset($_POST['submitted']))
 
 <!-- Form Code Start -->
 <div id='fg_membersite'>
-<form id='register' action='<?php echo $fgmembersite->GetSelfScript(); ?>' method='post' accept-charset='UTF-8'>
+<form id='register' action='' method='post' accept-charset='UTF-8'>
 <fieldset >
 <legend>DCSSA志愿者注册（Volunteer Registration）</legend>
 
 <input type='hidden' name='submitted' id='submitted' value='1'/>
 
 <div class='short_explanation'>* required fields</div>
-<input type='text'  class='spmhidip' name='<?php echo $fgmembersite->GetSpamTrapInputName(); ?>' />
+<input type='text'  class='spmhidip' name='<?php echo $volunteer->GetSpamTrapInputName(); ?>' />
 
-<div><span class='error'><?php echo $fgmembersite->GetErrorMessage(); ?></span></div>
+<div><span class='error'><?php echo $volunteer->GetErrorMessage(); ?></span></div>
 <div class='container'>
     <label for='username' >用户名(UserName)*:</label><br/>
-    <input type='text' name='username' id='username' value='<?php echo $fgmembersite->SafeDisplay('username') ?>' maxlength="50" /><br/>
+    <input type='text' name='username' id='username' value='<?php echo $volunteer->SafeDisplay('username') ?>' maxlength="50" /><br/>
     <span id='register_username_errorloc' class='error'></span>
 </div>
 <div class='container' style='height:80px;'>
@@ -49,42 +49,42 @@ if(isset($_POST['submitted']))
 </div>
 <div class='container'>
     <label for='name' >姓名(Full Name in English)*: </label><br/>
-    <input type='text' name='name' id='name' value='<?php echo $fgmembersite->SafeDisplay('name') ?>' maxlength="50" /><br/>
+    <input type='text' name='name' id='name' value='<?php echo $volunteer->SafeDisplay('name') ?>' maxlength="50" /><br/>
     <span id='register_name_errorloc' class='error'></span>
 </div>
 <div class='container'>
     <label for='gender' >性别(M/F)*: </label><br/>
-    <input type='text' name='gender' id='gender' value='<?php echo $fgmembersite->SafeDisplay('gender') ?>' maxlength="50" /><br/>
+    <input type='text' name='gender' id='gender' value='<?php echo $volunteer->SafeDisplay('gender') ?>' maxlength="50" /><br/>
     <span id='register_gender_errorloc' class='error'></span>
 </div>
 <div class='container'>
     <label for='email' >电子邮箱(Email Address)*:</label><br/>
-    <input type='text' name='email' id='email' value='<?php echo $fgmembersite->SafeDisplay('email') ?>' maxlength="50" /><br/>
+    <input type='text' name='email' id='email' value='<?php echo $volunteer->SafeDisplay('email') ?>' maxlength="50" /><br/>
     <span id='register_email_errorloc' class='error'></span>
 </div>
 <div class='container'>
     <label for='driver' >驾照号(Driver License No.)*:</label><br/>
-    <input type='text' name='driver' id='driver' value='<?php echo $fgmembersite->SafeDisplay('driver') ?>' maxlength="50" /><br/>
+    <input type='text' name='driver' id='driver' value='<?php echo $volunteer->SafeDisplay('driver') ?>' maxlength="50" /><br/>
     <span id='register_driver_errorloc' class='error'></span>
 </div>
 <div class='container'>
     <label for='office' >单位／院校(Company/School):</label><br/>
-    <input type='text' name='office' id='office' value='<?php echo $fgmembersite->SafeDisplay('office') ?>' maxlength="50" /><br/>
+    <input type='text' name='office' id='office' value='<?php echo $volunteer->SafeDisplay('office') ?>' maxlength="50" /><br/>
     <span id='register_office_errorloc' class='error'></span>
 </div>
 <div class='container'>
     <label for='cell' >手机号(Cellphone No.)*: </label><br/>
-    <input type='text' name='cell' id='cell' value='<?php echo $fgmembersite->SafeDisplay('cell') ?>' maxlength="50" /><br/>
+    <input type='text' name='cell' id='cell' value='<?php echo $volunteer->SafeDisplay('cell') ?>' maxlength="50" /><br/>
     <span id='register_cell_errorloc' class='error'></span>
 </div>
 <div class='container'>
     <label for='wechat' >微信号(WeChat ID): </label><br/>
-    <input type='text' name='wechat' id='wechat' value='<?php echo $fgmembersite->SafeDisplay('wechat') ?>' maxlength="50" /><br/>
+    <input type='text' name='wechat' id='wechat' value='<?php echo $volunteer->SafeDisplay('wechat') ?>' maxlength="50" /><br/>
     <span id='register_wechat_errorloc' class='error'></span>
 </div>
 <div class='container'>
     <label for='qq' >QQ号: </label><br/>
-    <input type='text' name='qq' id='qq' value='<?php echo $fgmembersite->SafeDisplay('qq') ?>' maxlength="50" /><br/>
+    <input type='text' name='qq' id='qq' value='<?php echo $volunteer->SafeDisplay('qq') ?>' maxlength="50" /><br/>
     <span id='register_qq_errorloc' class='error'></span>
 </div>
 

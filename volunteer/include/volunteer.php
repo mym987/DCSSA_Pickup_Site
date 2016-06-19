@@ -1,71 +1,42 @@
 <?PHP
-/*
-    Registration/Login script from HTML Form Guide
-    V1.0
-
-    This program is free software published under the
-    terms of the GNU Lesser General Public License.
-    http://www.gnu.org/copyleft/lesser.html
-    
-
-This program is distributed in the hope that it will
-be useful - WITHOUT ANY WARRANTY; without even the
-implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.
-
-For updates, please visit:
-http://www.html-form-guide.com/php-form/php-registration-form.html
-http://www.html-form-guide.com/php-form/php-login-form.html
-
-*/
 require_once("PHPMailerAutoload.php");
 require_once("formvalidator.php");
 
-class FGMembersite
+$volunteer = new Volunteer('conf_volunteer.ini');
+
+class Volunteer
 {
-    var $admin_email;
-    var $from_address;
-    
-    var $username;
-    var $pwd;
-    var $database;
-    var $tablename;
-    var $table_stu;
     var $connection;
-    var $rand_key;
     
     var $error_message;
     
     //-----Initialization -------
-    function FGMembersite()
+    function Volunteer($conf_ini)
     {
-        $this->sitename = 'YourWebsiteName.com';
-        $this->rand_key = '0iQx5oBk66oVZep';
+        $conf = parse_ini_file($conf_ini, true);
+
+        $this->sitename = $conf['web']['name'];
+        $this->admin_email = $conf['web']['email'];
+        $this->rand_key = $conf['web']['key'];
+
+        $this->db_host  = $conf['db']['hostname'];
+        $this->username = $conf['db']['username'];
+        $this->pwd      = $conf['db']['password'];
+        $this->database  = $conf['db']['dbname'];
+        $this->tablename = $conf['db']['tablename'];
         $this->table_stu = 'students';
-    }
-    
-    function InitDB($host,$uname,$pwd,$database,$tablename)
-    {
-        $this->db_host  = $host;
-        $this->username = $uname;
-        $this->pwd  = $pwd;
-        $this->database  = $database;
-        $this->tablename = $tablename;
-        
-    }
-    function SetAdminEmail($email)
-    {
-        $this->admin_email = $email;
-    }
-    
-    function SetWebsiteName($sitename)
-    {
-        $this->sitename = $sitename;
-    }
-    
-    function SetRandomKey($key)
-    {
-        $this->rand_key = $key;
+
+
+        $this->email_host  = $conf['email']['host'];
+        $this->email_port  = $conf['email']['port'];
+        $this->email_secure  = $conf['email']['secure'];
+        $this->email_username  = $conf['email']['username'];
+        $this->email_password  = $conf['email']['password'];
+        $this->email_reply_name  = $conf['email']['reply_name'];
+        $this->email_reply_addr  = $conf['email']['reply_addr'];
+        $this->email_from_name  = $conf['email']['from_name'];
+        $this->email_from_addr  = $conf['email']['from_addr'];
+
     }
 
     function Email($target,$name,$subject,$body){
@@ -73,13 +44,6 @@ class FGMembersite
         $mail = new PHPMailer(true);
         $mail->CharSet = 'utf-8';
         ini_set('default_charset', 'UTF-8');
-         /*echo "<h2>Run results</h2>\n";
-         echo "<ul>\n";
-         echo "<li>".$target."</li>";
-         echo "<li>".$name."</li>";
-         echo "<li>".$subject."</li>";
-         echo "<li>".$body."</li>";
-        echo "</ul>\n";*/
         try {
             $to = $target;
         if(!PHPMailer::validateAddress($to)) {
@@ -87,14 +51,14 @@ class FGMembersite
         }
         $mail->isSMTP();
         $mail->SMTPDebug  = 0;
-        $mail->Host       = "smtp.gmail.com";
-        $mail->Port       = "587";
-        $mail->SMTPSecure = "tls";
+        $mail->Host       = $this->email_host;
+        $mail->Port       = $this->email_port;
+        $mail->SMTPSecure = $this->email_secure;
         $mail->SMTPAuth   = true;
-        $mail->Username   = "dcssa2016@gmail.com";
-        $mail->Password   = "dqpenfuhmgpxnykg";
-        $mail->addReplyTo("ym67@duke.edu", "DCSSA");
-        $mail->setFrom("dcssa2016@gmail.com", "DCSSA");
+        $mail->Username   = $this->email_username;
+        $mail->Password   = $this->email_password;
+        $mail->addReplyTo($this->email_reply_addr, $this->email_reply_name);
+        $mail->setFrom($this->email_from_addr, $this->email_from_name);
         $mail->addAddress($target, $name);
         $mail->Subject  = $subject;
         $mail->WordWrap = 78;
@@ -902,7 +866,7 @@ class FGMembersite
                 "confirmcode VARCHAR(32) ,".
                 "resetcode VARCHAR(32) ,".
                 "PRIMARY KEY ( id_user )".
-                ")";
+                ")DEFAULT CHARSET=utf8"; 
                 
         if(!mysql_query($qry,$this->connection))
         {

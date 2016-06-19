@@ -1,11 +1,11 @@
 <?PHP
-require_once("./include/membersite_config.php");
+require_once("./include/student.php");
 
 if(isset($_POST['submitted']))
 {
-   if($fgmembersite->RegisterUser())
+   if($student->RegisterUser())
    {
-        $fgmembersite->RedirectToURL("thank-you.html");
+        $student->RedirectToURL("thank-you.html");
    }
 }
 
@@ -57,23 +57,23 @@ if(isset($_POST['submitted']))
 <input type='hidden' name='submitted' id='submitted' value='1'/>
 
 <div class='short_explanation'>* required fields</div>
-<input type='text'  class='spmhidip' name='<?php echo $fgmembersite->GetSpamTrapInputName(); ?>' />
+<input type='text'  class='spmhidip' name='<?php echo $student->GetSpamTrapInputName(); ?>' />
 
-<div><span class='error'><?php echo $fgmembersite->GetErrorMessage(); ?></span></div>
+<div><span class='error'><?php echo $student->GetErrorMessage(); ?></span></div>
 <div class='container'>
     <label for='name' >姓名(Full Name)*: </label><br/>
-    <input type='text' name='name' id='name' value='<?php echo $fgmembersite->SafeDisplay('name') ?>' maxlength="20" /><br/>
+    <input type='text' name='name' id='name' value='<?php echo $student->SafeDisplay('name') ?>' maxlength="20" /><br/>
     <span id='register_name_errorloc' class='error'></span>
 </div>
 <div class='container'>
     <label for='email' >电子邮件(请填写@duke.edu的邮箱，用于接收确认邮件)*:</label><br/>
-    <input type='text' name='email' id='email' value='<?php echo $fgmembersite->SafeDisplay('email') ?>' maxlength="50" /><br/>
+    <input type='text' name='email' id='email' value='<?php echo $student->SafeDisplay('email') ?>' maxlength="50" /><br/>
     <span id='register_email_errorloc' class='error'></span>
 </div>
 <!--
 <div class='container'>
     <label for='username' >UserName*:</label><br/>
-    <input type='text' name='username' id='username' value='<?php echo $fgmembersite->SafeDisplay('username') ?>' maxlength="50" /><br/>
+    <input type='text' name='username' id='username' value='<?php echo $student->SafeDisplay('username') ?>' maxlength="50" /><br/>
     <span id='register_username_errorloc' class='error'></span>
 </div>
 <div class='container' style='height:80px;'>
@@ -87,61 +87,61 @@ if(isset($_POST['submitted']))
 -->
 <div class='container'>
     <label for='gender' >性别(M/F):</label><br/>
-    <input type='text' name='gender' id='gender' value='<?php echo $fgmembersite->SafeDisplay('gender') ?>' maxlength="10" /><br/>
+    <input type='text' name='gender' id='gender' value='<?php echo $student->SafeDisplay('gender') ?>' maxlength="10" /><br/>
     <span id='register_gender_errorloc' class='error'></span>
 </div>
 
 <div class='container'>
     <label for='major' >就读专业(Department/Program at Duke):</label><br/>
-    <input type='text' name='major' id='major' value='<?php echo $fgmembersite->SafeDisplay('major') ?>' maxlength="50" /><br/>
+    <input type='text' name='major' id='major' value='<?php echo $student->SafeDisplay('major') ?>' maxlength="50" /><br/>
     <span id='register_major_errorloc' class='error'></span>
 </div>
 
 <div class='container'>
     <label for='comp' >毕业院校/单位(Alma mater/company):</label><br/>
-    <input type='text' name='comp' id='comp' value='<?php echo $fgmembersite->SafeDisplay('comp') ?>' maxlength="50" /><br/>
+    <input type='text' name='comp' id='comp' value='<?php echo $student->SafeDisplay('comp') ?>' maxlength="50" /><br/>
     <span id='register_comp_errorloc' class='error'></span>
 </div>
 
 <div class='container'>
     <label for='date' >抵达RDU机场的日期(MM/DD)*:</label><br/>
-    <input type='text' name='date' id='date' value='<?php echo $fgmembersite->SafeDisplay('date') ?>' maxlength="10" /><br/>
+    <input type='text' name='date' id='date' value='<?php echo $student->SafeDisplay('date') ?>' maxlength="10" /><br/>
     <span id='register_date_errorloc' class='error'></span>
 </div>
 
 <div class='container'>
     <label for='time' >抵达RDU机场的时间(e.g. 11:35pm)*:</label><br/>
-    <input type='text' name='time' id='time' value='<?php echo $fgmembersite->SafeDisplay('time') ?>' maxlength="10" /><br/>
+    <input type='text' name='time' id='time' value='<?php echo $student->SafeDisplay('time') ?>' maxlength="10" /><br/>
     <span id='register_time_errorloc' class='error'></span>
 </div>
 
 <div class='container'>
     <label for='flight' >航班号(e.g. MU999)*:</label><br/>
-    <input type='text' name='flight' id='flight' value='<?php echo $fgmembersite->SafeDisplay('flight') ?>' maxlength="20" /><br/>
+    <input type='text' name='flight' id='flight' value='<?php echo $student->SafeDisplay('flight') ?>' maxlength="20" /><br/>
     <span id='register_flight_errorloc' class='error'></span>
 </div>
 
 <div class='container'>
     <label for='nump' >需接机的人数(Number of Passengers)*:</label><br/>
-    <input type='text' name='nump' id='nump' value='<?php echo $fgmembersite->SafeDisplay('nump') ?>' maxlength="5" /><br/>
+    <input type='text' name='nump' id='nump' value='<?php echo $student->SafeDisplay('nump') ?>' maxlength="5" /><br/>
     <span id='register_nump_errorloc' class='error'></span>
 </div>
 
 <div class='container'>
     <label for='numc' >行李信息(e.g.2x158cm,1x115cm,1 backpack)*:</label><br/>
-    <input type='text' name='numc' id='numc' value='<?php echo $fgmembersite->SafeDisplay('numc') ?>' maxlength="50" /><br/>
+    <input type='text' name='numc' id='numc' value='<?php echo $student->SafeDisplay('numc') ?>' maxlength="50" /><br/>
     <span id='register_numc_errorloc' class='error'></span>
 </div>
 
 <div class='container'>
     <label for='contact' >联系方式(手机号)*:</label><br/>
-    <input type='text' name='contact' id='contact' value='<?php echo $fgmembersite->SafeDisplay('contact') ?>' maxlength="50" /><br/>
+    <input type='text' name='contact' id='contact' value='<?php echo $student->SafeDisplay('contact') ?>' maxlength="50" /><br/>
     <span id='register_contact_errorloc' class='error'></span>
 </div>
 
 <div class='container'>
     <label for='wechat' >微信/QQ号(请注明)*:</label><br/>
-    <input type='text' name='wechat' id='wechat' value='<?php echo $fgmembersite->SafeDisplay('wechat') ?>' maxlength="50" /><br/>
+    <input type='text' name='wechat' id='wechat' value='<?php echo $student->SafeDisplay('wechat') ?>' maxlength="50" /><br/>
     <span id='register_wechat_errorloc' class='error'></span>
 </div>
 <div class='container'>

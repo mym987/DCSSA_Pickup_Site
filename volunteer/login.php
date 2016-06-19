@@ -1,11 +1,11 @@
 <?PHP
-require_once("./include/membersite_config.php");
+require_once("./include/volunteer.php");
 
 if(isset($_POST['submitted']))
 {
-   if($fgmembersite->Login())
+   if($volunteer->Login())
    {
-        $fgmembersite->RedirectToURL("login-home.php");
+        $volunteer->RedirectToURL("login-home.php");
    }
 }
 
@@ -22,7 +22,7 @@ if(isset($_POST['submitted']))
 
 <!-- Form Code Start -->
 <div id='fg_membersite'>
-<form id='login' action='<?php echo $fgmembersite->GetSelfScript(); ?>' method='post' accept-charset='UTF-8'>
+<form id='login' action='' method='post' accept-charset='UTF-8'>
 <fieldset >
 <legend>Login</legend>
 
@@ -30,10 +30,10 @@ if(isset($_POST['submitted']))
 
 <div class='short_explanation'>* required fields</div>
 
-<div><span class='error'><?php echo $fgmembersite->GetErrorMessage(); ?></span></div>
+<div><span class='error'><?php echo $volunteer->GetErrorMessage(); ?></span></div>
 <div class='container'>
     <label for='username' >UserName*:</label><br/>
-    <input type='text' name='username' id='username' value='<?php echo $fgmembersite->SafeDisplay('username') ?>' maxlength="50" /><br/>
+    <input type='text' name='username' id='username' value='<?php echo $volunteer->SafeDisplay('username') ?>' maxlength="50" /><br/>
     <span id='login_username_errorloc' class='error'></span>
 </div>
 <div class='container'>

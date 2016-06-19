@@ -1,9 +1,9 @@
 <?PHP
-require_once("./include/membersite_config.php");
+require_once("./include/volunteer.php");
 
-if(!$fgmembersite->CheckLogin())
+if(!$volunteer->CheckLogin())
 {
-    $fgmembersite->RedirectToURL("login.php");
+    $volunteer->RedirectToURL("login.php");
     exit;
 }
 ?>
@@ -20,7 +20,7 @@ if(!$fgmembersite->CheckLogin())
 This page can be accessed after logging in only. To make more access controlled pages, 
 copy paste the code between &lt;?php and ?&gt; to the page and name the page to be php.
 <p>
-Logged in as: <?= $fgmembersite->UserFullName() ?>
+Logged in as: <?= $volunteer->UserFullName() ?>
 </p>
 <p>
 <a href='login-home.php'>Home</a>
