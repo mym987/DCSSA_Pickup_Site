@@ -85,8 +85,12 @@ if($submitted)
         }
       }
    } else {
-      echo "Sorry, you are not registered or you entered incorrect information";
-      echo $student->GetErrorMessage();
+      if ($student->GetErrorMessage()!=null){
+        echo $student->GetErrorMessage().'<br/>';
+      }
+      else {
+        echo "Sorry, you are not registered or you entered incorrect information";
+      }
    } 
   /*$student->RedirectToURL('http://www.google.com/');
    if($_POST['code'] == $_SESSION['code']){
