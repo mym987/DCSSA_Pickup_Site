@@ -56,7 +56,9 @@ if(isset($_POST['submitted']))
 
 <input type='hidden' name='submitted' id='submitted' value='1'/>
 
-<div class='short_explanation'>* required fields</div>
+<div class='short_explanation'>* required fields<br/>
+更新：表单已支持中文
+</div>
 <input type='text'  class='spmhidip' name='<?php echo $student->GetSpamTrapInputName(); ?>' />
 
 <div><span class='error'><?php echo $student->GetErrorMessage(); ?></span></div>
