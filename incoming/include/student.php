@@ -113,6 +113,24 @@ class Student
         return true;
     }
 
+    function CheckUser(&$info){
+        if(!isset($_POST['submit']))
+        {
+           return false;
+        }
+        
+        if(!$this->ValidateCheckSubmission())
+        {
+            return false;
+        }
+
+        $formvars = array();
+        
+        $this->CollectCheckSubmission($formvars);
+
+        return $this->GetStudentByEmailAndFlight($info, $formvars);
+    }
+
     function ConfirmUser()
     {
         if(empty($_GET['code'])||strlen($_GET['code'])<=10)
@@ -257,6 +275,26 @@ class Student
         
         return true;
     }
+
+    function GetStudentByEmailAndFlight(&$info, &$formvars) {
+        if(!$this->DBLogin())
+        {
+            $this->HandleError("Database login failed!");
+            return false;
+        }   
+        $email = $this->SanitizeForSQL($formvars['email']);
+        $flight = $this->SanitizeForSQL($formvars['flight']);
+
+        $qry = "Select * from $this->tablename where email='$email' and flight like '%$flight%'";
+        $result = mysql_query($qry,$this->connection);  
+
+        if ($row = mysql_fetch_array($result)){
+            $info = $row;
+            return true;
+        } else {
+            return false;
+        }
+    }
     
     function SendUserWelcomeEmail(&$user_rec)
     {
@@ -346,6 +384,44 @@ class Student
         $formvars['numc'] = $this->Sanitize($_POST['numc']);
         $formvars['contact'] = $this->Sanitize($_POST['contact']);
         $formvars['wechat'] = $this->Sanitize($_POST['wechat']);
+    }
+
+    function ValidateCheckSubmission()
+    {
+        //This is a hidden input field. Humans won't fill this field.
+        if(!empty($_POST[$this->GetSpamTrapInputName()]) )
+        {
+            //The proper error is not given intentionally
+            $this->HandleError("Automated submission prevention: case 2 failed");
+            return false;
+        }
+        
+        $validator = new FormValidator();
+        $validator->addValidation("email","req","请填写Email");
+        $validator->addValidation("flight","req","请填写航班号");
+        $validator->addValidation("flight","num","航班号仅需数字部分");
+        $validator->addValidation("email","duke_email","请提供一个以 @duke.edu 结尾的邮箱");
+
+        
+        if(!$validator->ValidateForm())
+        {
+            $error='';
+            $error_hash = $validator->GetErrors();
+            foreach($error_hash as $inpname => $inp_err)
+            {
+                //$error .= $inpname.':'.$inp_err."\n";
+                $error .= $inp_err."\n";
+            }
+            $this->HandleError($error);
+            return false;
+        }        
+        return true;
+    }
+    
+    function CollectCheckSubmission(&$formvars)
+    {
+        $formvars['email'] = $this->Sanitize($_POST['email']);
+        $formvars['flight'] = $this->Sanitize($_POST['flight']);
     }
     
     function SendUserConfirmationEmail(&$formvars)

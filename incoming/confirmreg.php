@@ -27,7 +27,7 @@ Please enter the confirmation code in the box below
 
 <!-- Form Code Start -->
 <div id='fg_membersite'>
-<form id='confirm' action='<?php echo $student->GetSelfScript(); ?>' method='get' accept-charset='UTF-8'>
+<form id='confirm' action='' method='get' accept-charset='UTF-8'>
 <div class='short_explanation'>* required fields</div>
 <div><span class='error'><?php echo $student->GetErrorMessage(); ?></span></div>
 <div class='container'>
