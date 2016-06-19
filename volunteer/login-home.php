@@ -21,8 +21,8 @@ if(!$volunteer->CheckLogin())
 Welcome back <?= $volunteer->UserFullName(); ?>!
 
 <p><a href='change-pwd.php'>修改密码(Change password)</a></p>
-
 <p><a href='main.php'>接机安排(Pickup Arrangement Page)</a></p>
+<p><a href='viewer.php'>查看我要接的学生(View my Assigned Students)</a></p>
 <br><br><br>
 <p><a href='logout.php'>退出(Logout)</a></p>
 </div>

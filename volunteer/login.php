@@ -1,5 +1,6 @@
 <?PHP
 require_once("./include/volunteer.php");
+$volunteer->LogOut();
 
 if(isset($_POST['submitted']))
 {
