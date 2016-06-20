@@ -23,16 +23,17 @@ Please enter your email address and the numerical part of your flight number exa
 <div id='fg_membersite'>
 <form id='check' action='' method='post' accept-charset='UTF-8'>
 <div class='short_explanation'>* required fields</div>
+<input type='text'  class='spmhidip' name='<?php echo $student->GetSpamTrapInputName(); ?>' />
 <div><span class='error'><?php echo $student->GetErrorMessage(); ?></span></div>
 <div class='container'>
     <label for='email' >Email:* </label><br/>
-    <input type='text' name='email' id='email' maxlength="50" /><br/>
-    <span id='register_email_errorloc' class='error'></span>
+    <input type='text' name='email' id='email' value='<?php echo $student->SafeDisplay('email') ?>' maxlength="50" /><br/>
+    <span id='check_email_errorloc' class='error'></span>
 </div>
 <div class='container'>
     <label for='flight' >Flight number(if your flight is UA999, then enter 999):* </label><br/>
-    <input type='text' name='flight' id='flight' maxlength="50" /><br/>
-    <span id='register_flight_errorloc' class='error'></span>
+    <input type='text' name='flight' id='flight' value='<?php echo $student->SafeDisplay('flight') ?>' maxlength="50" /><br/>
+    <span id='check_flight_errorloc' class='error'></span>
 </div>
 <!--
 <div class='container'>
@@ -44,13 +45,6 @@ Please enter your email address and the numerical part of your flight number exa
 </div>
 
 </form>
-
-<script>
-function create_code(){
-    document.getElementById('code').src = 'code.php?'+Math.random()*10000;
-}
-</script>
-
 <script type='text/javascript'>
 // <![CDATA[
 
@@ -59,11 +53,17 @@ function create_code(){
     frmvalidator.EnableMsgsTogether();
     frmvalidator.addValidation("email","req","Please enter your email");
     frmvalidator.addValidation("flight","req","Please enter your flight no.");
-    frmvalidator.addValidation("code","req","Please enter verification code");
+    //frmvalidator.addValidation("code","req","Please enter verification code");
     frmvalidator.addValidation("flight","num","Numbers only!");
 
 // ]]>
 </script>
+<script>
+/*function create_code(){
+    document.getElementById('code').src = 'code.php?'+Math.random()*10000;
+}*/
+</script>
+
 </div>
 
 <?php
