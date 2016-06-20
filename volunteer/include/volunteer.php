@@ -580,7 +580,7 @@ class Volunteer
         "Name: ".$user_rec['name']."<br/>".
         "Email address: ".$user_rec['email']."<br/>";
 
-        if ($this->Email($this->admin_email,"Admin","Registration Completed: ".$user_rec['name'],$body)){
+        if ($this->Email($this->admin_email,"Admin","Volunteer Registration Completed: ".$user_rec['name'],$body)){
             return true;
         } else {
             return false;
@@ -771,7 +771,7 @@ class Volunteer
         "Email address: ".$formvars['email']."<br/>".
         "UserName: ".$formvars['username'];
         
-        return $this->Email($this->admin_email,"Admin","New registration: ".$formvars['name'],$body);
+        return $this->Email($this->admin_email,"Admin","New Volunteer Registration: ".$formvars['name'],$body);
     }
     
     function SaveToDatabase(&$formvars)

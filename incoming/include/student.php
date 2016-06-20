@@ -324,7 +324,7 @@ class Student
         "Name: ".$user_rec['name']."<br/>".
         "Email address: ".$user_rec['email']."<br/>";
 
-        if ($this->Email($this->admin_email,"Admin","Registration Completed: ".$user_rec['name'],$body)){
+        if ($this->Email($this->admin_email,"Admin","Student Registration Completed: ".$user_rec['name'],$body)){
             return true;
         } else {
             return false;
@@ -457,12 +457,11 @@ class Student
     
     function SendAdminIntimationEmail(&$formvars)
     {       
-        $body ="A new user registered at ".$this->sitename."<br/>".
+        $body ="A new student registered at ".$this->sitename."<br/>".
         "Name: ".$formvars['name']."<br/>".
-        "Email address: ".$formvars['email']."<br/>".
-        "UserName: ".$formvars['username'];
+        "Email address: ".$formvars['email']."<br/>";
         
-        return $this->Email($this->admin_email,"Admin","New registration: ".$formvars['name'],$body);
+        return $this->Email($this->admin_email,"Admin","New Student Registration: ".$formvars['name'],$body);
     }
     
     function SaveToDatabase(&$formvars)
