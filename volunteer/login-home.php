@@ -23,6 +23,14 @@ Welcome back <?= $volunteer->UserFullName(); ?>!
 <p><a href='change-pwd.php'>修改密码(Change password)</a></p>
 <p><a href='main.php'>接机安排(Pickup Arrangement Page)</a></p>
 <p><a href='viewer.php'>查看我要接的学生(View my Assigned Students)</a></p>
+<?php
+$user_rec = array();
+$volunteer->GetUserFromEmail($volunteer->UserEmail(), $user_rec);
+if($user_rec['level'])
+{
+    echo "<p><a href='admin-view.php'>查看所有学生</a></p>";
+}
+?>
 <br><br><br>
 <p><a href='logout.php'>退出(Logout)</a></p>
 </div>
