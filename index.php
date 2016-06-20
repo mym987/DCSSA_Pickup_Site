@@ -15,7 +15,8 @@ $volunteer->LogOut();
 <body>
 <div id='fg_membersite_content'>
 <h2>DCSSA新生接机管理</h2>
-<p>杜克本科生的接机由iHouse负责，鉴于DCSSA志愿者数量有限，故DCSSA将不为本科生提供服务。本科生请勿填写此表格，敬请谅解，谢谢合作。</p>
+<p>杜克本科生的接机由iHouse负责，鉴于DCSSA志愿者数量有限，故DCSSA将不为本科新生提供服务。</p>
+<p>本科新生请勿填写此表格，若有疑问请联系ihouse AT duke.edu。敬请谅解，谢谢合作。</p>
 <ul>
 <li><a href='incoming/register.php'>新生注册(Incoming Student Registration)</a></li>
 <li><a href='incoming/viewer.php'>查询新生注册信息(Check Student Registration)</a></li>
