@@ -22,7 +22,9 @@ if(isset($_POST['submit'])){
       <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
       <title>已接学生查询</title>
       <link rel="STYLESHEET" type="text/css" href="style/main.css">
-      
+      <link rel="STYLESHEET" type="text/css" href="../../tablesorter/themes/blue/style.css">
+      <script type="text/javascript" src="../../tablesorter/jquery-latest.js"></script> 
+	  <script type="text/javascript" src="../../tablesorter/jquery.tablesorter.js"></script> 
 </head>
 
 <body>
@@ -37,8 +39,8 @@ if(!$volunteer->DBLogin()){
 }
 ?>
 <form id='main' action='' method='post' accept-charset='UTF-8'>
-<table id='main' border='0' cellpadding='0' cellspacing='0' class='table-fill'> 
-<tr>
+<table id='main-table' border='0' cellpadding='0' cellspacing='0' class='tablesorter'> 
+<thead><tr>
 <th width='20px' position='fixed' />
 <th>姓名</th> 
 <th>接机日期</th> 
@@ -52,7 +54,7 @@ if(!$volunteer->DBLogin()){
 <th>性别</th> 
 <th>专业</th> 
 <th>毕业院校</th> 
-</tr>
+</tr></thead><tbody>
 <?php
 $user_email = $volunteer->UserEmail();
 $qry = "Select * from $volunteer->table_stu where confirmcode='y' and volunteer='$user_email'";
@@ -80,7 +82,7 @@ while($row = mysql_fetch_array($result) ) {
 	echo "</tr>";
 
 }
-echo "</table>";
+echo "</tbody></table>";
 //$msg = "是否继续？";
 //echo "<input type='submit' name='submit' value='提交(Submit)' onclick='return confirm($msg)' />";
 //echo "<p>*点击提交后，您和待接机的学生都会收到邮件</p>";
@@ -88,6 +90,15 @@ echo "</form>";
 ?> 
 
 <div><span class='error'><?php echo $volunteer->GetErrorMessage(); ?></span></div>
+
+<script type="text/javascript">
+	$(document).ready(function() 
+    { 
+        $("#main-table").tablesorter(); 
+    } 
+	); 
+
+</script>
 <p>
 Logged in as: <?= $volunteer->UserFullName() ?>
 </p>

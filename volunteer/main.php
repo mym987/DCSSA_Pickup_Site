@@ -20,8 +20,11 @@ if(isset($_POST['submit'])){
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 <head>
       <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
-      <title>An Access Controlled Page</title>
+      <title>Pair up with Students</title>
       <link rel="STYLESHEET" type="text/css" href="style/main.css">
+      <link rel="STYLESHEET" type="text/css" href="../../tablesorter/themes/blue/style.css">
+      <script type="text/javascript" src="../../tablesorter/jquery-latest.js"></script> 
+	  <script type="text/javascript" src="../../tablesorter/jquery.tablesorter.js"></script> 
       
 </head>
 
@@ -36,8 +39,8 @@ if(!$volunteer->DBLogin()){
    exit;
 }
 echo "<form id='main' action='' method='post' accept-charset='UTF-8'>";
-echo "<table id='main' border='0' cellpadding='0' cellspacing='0' class='table-fill'> 
-<tr>
+echo "<table id='main-table' border='0' cellpadding='0' cellspacing='0' class='tablesorter'> 
+<thead><tr>
 <th width='20px' position='fixed' />
 <th width='200px' position='fixed'>接机日期</th> 
 <th width='200px' >接机时间</th>
@@ -45,7 +48,7 @@ echo "<table id='main' border='0' cellpadding='0' cellspacing='0' class='table-f
 <th width='50px'>人数</th>
 <th width='300px'>行李</th>
 <th>我要接这名学生</th>
-</tr>";
+</tr></thead><tbody>";
 
 $qry = "Select * from $volunteer->table_stu where confirmcode='y' and volunteer is null";
 $result = mysql_query($qry,$volunteer->connection);
@@ -65,7 +68,7 @@ while($row = mysql_fetch_array($result) ) {
 	echo "</tr>";
 
 }
-echo "</table>";
+echo "</tbody></table>";
 $msg = "是否继续？";
 echo "<input type='submit' name='submit' value='提交(Submit)' onclick='return confirm($msg)' />";
 echo "<p>*点击提交后，您和待接机的学生都会收到邮件</p>";
@@ -73,6 +76,15 @@ echo "</form>";
 ?> 
 
 <div><span class='error'><?php echo $volunteer->GetErrorMessage(); ?></span></div>
+
+<script type="text/javascript">
+	$(document).ready(function() 
+    { 
+        $("#main-table").tablesorter(); 
+    } 
+	); 
+
+</script>
 <p>
 Logged in as: <?= $volunteer->UserFullName() ?>
 </p>
