@@ -65,6 +65,7 @@ $qry = "Select * from $volunteer->table_stu";
 $result = mysql_query($qry,$volunteer->connection);
 $count = 0;
 while($row = mysql_fetch_array($result) ) {
+	if ($row['confirmcode']=='n')continue;
 	$count = $count + 1;
 	$email = $row['email'];
 	echo "<tr>";
