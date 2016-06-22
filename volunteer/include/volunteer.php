@@ -308,14 +308,18 @@ class Volunteer
         $checked_count = count($_POST['check_list']);
         //echo "You have selected following ".$checked_count." option(s): <br/>";
         // Loop to store and display values of individual checked checkbox.
-        foreach($_POST['check_list'] as $email) {
+        foreach($_POST['check_list'] as $id) {
             $stu_rec = array();
-            if(!$this->GetStudentFromEmail($email,$stu_rec))
+            if(!$this->GetStudentFromID($id,$stu_rec))
             {
                 return false;
             }
             $user_rec = array();
             if(!$this->GetUserFromEmail($this->UserEmail(),$user_rec))
+            {
+                return false;
+            }
+            if(!$this->UpdateStudentAsPicked($this->UserEmail(),$stu_rec))
             {
                 return false;
             }
@@ -327,11 +331,6 @@ class Volunteer
             {
                 return false;
             }
-            if(!$this->UpdateStudentAsPicked($this->UserEmail(),$stu_rec))
-            {
-                return false;
-            }
-
             //echo "<p>".$selected ."</p>";
         }
         //echo "<br/><b>Note :</b> <span>Similarily, You Can Also Perform CRUD Operations using These Selected Values.</span>";
@@ -523,6 +522,28 @@ class Volunteer
         if(!$result || mysql_num_rows($result) <= 0)
         {
             $this->HandleError("There is no user with email: $email");
+            return false;
+        }
+        $user_rec = mysql_fetch_assoc($result);
+
+        
+        return true;
+    }
+
+    function GetStudentFromID($id,&$user_rec)
+    {
+        if(!$this->DBLogin())
+        {
+            $this->HandleError("Database login failed!");
+            return false;
+        }   
+        $email = $this->SanitizeForSQL($id);
+        
+        $result = mysql_query("Select * from $this->table_stu where id_user='$id'",$this->connection);  
+
+        if(!$result || mysql_num_rows($result) <= 0)
+        {
+            $this->HandleError("There is no user with id: $id");
             return false;
         }
         $user_rec = mysql_fetch_assoc($result);

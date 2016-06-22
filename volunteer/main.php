@@ -55,7 +55,7 @@ $result = mysql_query($qry,$volunteer->connection);
 $count = 0;
 while($row = mysql_fetch_array($result) ) {
 	$count = $count + 1;
-	$email = $row['email'];
+	$id = $row['id_user'];
 	echo "<tr>";
 	echo "<td>" . $count . "</td>";
 	echo "<td>" . $row['date'] . "</td>";
@@ -64,7 +64,7 @@ while($row = mysql_fetch_array($result) ) {
 	echo "<td>" . $row['nump'] . "</td>";
 	echo "<td>" . $row['numc'] . "</td>";
 	//echo "<td style='width: 150px; border: 1px solid black;'>" . $row['email'] . "</td>";
-	echo "<td>"."<input type='checkbox' name='check_list[]' value=$email >"."</td>";
+	echo "<td>"."<input type='checkbox' name='check_list[]' value=$id >"."</td>";
 	echo "</tr>";
 
 }
@@ -85,7 +85,8 @@ echo "</form>";
 	); 
 
 	$("#main").submit(function() {
-		return confirm("请确认要接这些学生","确认提交");
+		var cnt = document.querySelectorAll('input[type="checkbox"]:checked').length;
+		return confirm("请确认要接这"+cnt+"名学生","确认提交");
 	});
 
 </script>
