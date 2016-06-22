@@ -70,7 +70,7 @@ while($row = mysql_fetch_array($result) ) {
 }
 echo "</tbody></table>";
 $msg = "是否继续？";
-echo "<input type='submit' name='submit' value='提交(Submit)' onclick='return confirm($msg)' />";
+echo "<input type='submit' name='submit' value='提交(Submit)'/>";
 echo "<p>*点击提交后，您和待接机的学生都会收到邮件</p>";
 echo "</form>";
 ?> 
@@ -83,6 +83,10 @@ echo "</form>";
         $("#main-table").tablesorter(); 
     } 
 	); 
+
+	$("#main").submit(function() {
+		return confirm("请确认要接这些学生","确认提交");
+	});
 
 </script>
 <p>
