@@ -729,7 +729,7 @@ class Volunteer
             $error_hash = $validator->GetErrors();
             foreach($error_hash as $inpname => $inp_err)
             {
-                $error .= $inpname.':'.$inp_err."\n";
+                $error .= $inp_err."\n";
             }
             $this->HandleError($error);
             return false;
