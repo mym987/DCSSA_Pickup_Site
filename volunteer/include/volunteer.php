@@ -712,10 +712,15 @@ class Volunteer
         
         $validator = new FormValidator();
         $validator->addValidation("name","req","Please fill in Name");
-        $validator->addValidation("email","email","The input for Email should be a valid email value");
+        $validator->addValidation("email","regexp=/^[0-9a-zA-Z-]+@duke+\.+edu$/i","Email format: netid@duke.edu");
+        //$validator->addValidation("email","email","The input for Email should be a valid email value");
         $validator->addValidation("email","req","Please fill in Email");
         $validator->addValidation("username","req","Please fill in UserName");
         $validator->addValidation("password","req","Please fill in Password");
+        $validator->addValidation("cell","req","Please fill in cellphone number");
+        $validator->addValidation("driver","req","Please fill in Driver License No.");
+        $validator->addValidation("gender","req","Please fill in gender");
+        $validator->addValidation("office","req","Please fill in Company/School");
 
         
         if(!$validator->ValidateForm())

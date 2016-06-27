@@ -58,7 +58,7 @@ if(isset($_POST['submitted']))
     <span id='register_gender_errorloc' class='error'></span>
 </div>
 <div class='container'>
-    <label for='email' >电子邮箱(Email Address)*:</label><br/>
+    <label for='email' >电子邮箱(Duke Email Address: netid@duke.edu)*:</label><br/>
     <input type='text' name='email' id='email' value='<?php echo $volunteer->SafeDisplay('email') ?>' maxlength="50" /><br/>
     <span id='register_email_errorloc' class='error'></span>
 </div>
@@ -68,7 +68,7 @@ if(isset($_POST['submitted']))
     <span id='register_driver_errorloc' class='error'></span>
 </div>
 <div class='container'>
-    <label for='office' >单位／院校(Company/School):</label><br/>
+    <label for='office' >单位／院校(Company/School)*:</label><br/>
     <input type='text' name='office' id='office' value='<?php echo $volunteer->SafeDisplay('office') ?>' maxlength="50" /><br/>
     <span id='register_office_errorloc' class='error'></span>
 </div>
