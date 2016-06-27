@@ -240,7 +240,7 @@ class FormValidator
 
 	function validate_duke_email($email) 
 	{
-		return preg_match("/^[_\.0-9a-zA-Z-]+@duke+\.+edu$/i", $email);
+		return preg_match("/^[0-9a-zA-Z-]+@duke+\.+edu$/i", $email);
 	}
 
 	function validate_for_numeric_input($input_value,&$validation_success)

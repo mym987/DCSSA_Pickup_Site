@@ -348,12 +348,12 @@ class Student
         $validator->addValidation("date","regexp=/^[0-9]{2}\/[0-9]{2}$/","日期格式为MM/DD");
         $validator->addValidation("time","req","请填写抵达时间");
         $validator->addValidation("flight","req","请填写航班号");
-        $validator->addValidation("flight","regexp=/^[A-Za-z]+[0-9]+$/","请填写正确的航班号");
+        $validator->addValidation("flight","regexp=/^[A-Za-z]+[0-9]+$/","请填写正确的航班号（不带空格）");
         $validator->addValidation("nump","req","请填写需接机人数");
         $validator->addValidation("numc","req","请填写行李信息");
         $validator->addValidation("contact","req","请填写电话号码");
         $validator->addValidation("wechat","req","请填写微信/QQ（至少一个）");
-        $validator->addValidation("email","duke_email","请提供一个以 @duke.edu 结尾的邮箱");
+        $validator->addValidation("email","duke_email","请提供一个格式为netid@duke.edu的邮箱");
 
         
         if(!$validator->ValidateForm())
