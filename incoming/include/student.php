@@ -402,7 +402,7 @@ class Student
         $validator->addValidation("email","req","请填写Email");
         $validator->addValidation("flight","req","请填写航班号");
         $validator->addValidation("flight","num","航班号仅需数字部分");
-        $validator->addValidation("email","duke_email","请提供一个以 @duke.edu 结尾的邮箱");
+        $validator->addValidation("email","regexp=/^[\.0-9a-zA-Z-]+@duke+\.+edu$/i","请提供一个以 @duke.edu 结尾的邮箱");
 
         
         if(!$validator->ValidateForm())
