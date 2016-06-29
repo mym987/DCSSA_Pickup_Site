@@ -42,6 +42,9 @@ echo "<form id='main' action='' method='post' accept-charset='UTF-8'>";
 echo "<table id='main-table' border='0' cellpadding='0' cellspacing='0' class='tablesorter'> 
 <thead><tr>
 <th width='20px' position='fixed' />
+<th width='40px' position='fixed'>性别</th> 
+<th width='100px' position='fixed'>毕业院校</th> 
+<th width='100px' position='fixed'>专业</th> 
 <th width='200px' position='fixed'>接机日期</th> 
 <th width='200px' >接机时间</th>
 <th width='150px'>航班号</th>
@@ -58,6 +61,9 @@ while($row = mysql_fetch_array($result) ) {
 	$id = $row['id_user'];
 	echo "<tr>";
 	echo "<td>" . $count . "</td>";
+	echo "<td>" . $row['gender'] . "</td>";
+	echo "<td>" . $row['comp'] . "</td>";
+	echo "<td>" . $row['major'] . "</td>";
 	echo "<td>" . $row['date'] . "</td>";
 	echo "<td>" . $row['time'] . "</td>";
 	echo "<td>" . $row['flight'] . "</td>";
