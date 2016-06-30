@@ -432,7 +432,7 @@ class Volunteer
         }          
         $username = $this->SanitizeForSQL($username);
         $pwdmd5 = md5($password);
-        $qry = "Select name, email from $this->tablename where username='$username' and password='$pwdmd5'";
+        $qry = "Select name, email, confirmcode from $this->tablename where username='$username' and password='$pwdmd5'";
         
         $result = mysql_query($qry,$this->connection);
         
@@ -445,8 +445,8 @@ class Volunteer
         $row = mysql_fetch_assoc($result);
 
         if($row['confirmcode']!='y'){
-            //$this->HandleError("You have not confirmed your account yet!");
-            //return false;
+            $this->HandleError("You have not confirmed your account yet!");
+            return false;
         }
         
         $_SESSION['name_of_user']  = $row['name'];
