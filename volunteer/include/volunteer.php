@@ -445,8 +445,8 @@ class Volunteer
         $row = mysql_fetch_assoc($result);
 
         if($row['confirmcode']!='y'){
-            $this->HandleError("You have not confirmed your account yet!");
-            return false;
+            //$this->HandleError("You have not confirmed your account yet!");
+            //return false;
         }
         
         $_SESSION['name_of_user']  = $row['name'];
