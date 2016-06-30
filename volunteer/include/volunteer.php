@@ -888,6 +888,7 @@ class Volunteer
     {
         $qry = "Create Table $this->tablename (".
                 "id_user INT NOT NULL AUTO_INCREMENT ,".
+                "level INT,".
                 "name VARCHAR( 128 ) NOT NULL ,".
                 "email VARCHAR( 64 ) NOT NULL ,".
                 "username VARCHAR( 16 ) NOT NULL ,".

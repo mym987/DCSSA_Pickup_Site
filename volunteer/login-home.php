@@ -29,6 +29,7 @@ $volunteer->GetUserFromEmail($volunteer->UserEmail(), $user_rec);
 if($user_rec['level'])
 {
     echo "<p><a href='admin-view.php'>查看所有学生</a></p>";
+    echo "<p><a href='admin-user-view.php'>查看所有志愿者</a></p>";
 }
 ?>
 <br><br><br>
