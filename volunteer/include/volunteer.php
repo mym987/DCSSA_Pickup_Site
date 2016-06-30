@@ -207,6 +207,11 @@ class Volunteer
         {
             return false;
         }
+        if($user_rec['confirmcode']!='y')
+        {
+            $this->HandleError("You have not confirmed your account yet!");
+            return false;
+        }
         if(false === $this->SendResetPasswordLink($user_rec))
         {
             return false;
@@ -427,7 +432,7 @@ class Volunteer
         }          
         $username = $this->SanitizeForSQL($username);
         $pwdmd5 = md5($password);
-        $qry = "Select name, email from $this->tablename where username='$username' and password='$pwdmd5' and confirmcode='y'";
+        $qry = "Select name, email from $this->tablename where username='$username' and password='$pwdmd5'";
         
         $result = mysql_query($qry,$this->connection);
         
@@ -438,7 +443,11 @@ class Volunteer
         }
         
         $row = mysql_fetch_assoc($result);
-        
+
+        if($row['confirmcode']!='y'){
+            $this->HandleError("You have not confirmed your account yet!");
+            return false;
+        }
         
         $_SESSION['name_of_user']  = $row['name'];
         $_SESSION['email_of_user'] = $row['email'];
@@ -565,7 +574,7 @@ class Volunteer
 
         if(!$result || mysql_num_rows($result) <= 0)
         {
-            $this->HandleError("There is no user with email: $email");
+            $this->HandleError("There is no student with email: $email");
             return false;
         }
         $user_rec = mysql_fetch_assoc($result);
