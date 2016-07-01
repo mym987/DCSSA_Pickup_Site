@@ -61,7 +61,7 @@ echo date('Y年m月d日 h:m A P');
 <?php
 $user_email = $user_rec['email'];
 $level = $user_rec['level'];
-$qry = "Select * from $volunteer->tablename where level is null or level<$level";
+$qry = "Select * from $volunteer->tablename where level is null or level<=$level";
 $result = mysql_query($qry,$volunteer->connection);
 $count = 0;
 $today = date('m/d');
