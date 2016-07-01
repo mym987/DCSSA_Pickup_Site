@@ -39,6 +39,7 @@ if(!$volunteer->DBLogin()){
    $volunteer->HandleError("Database login failed!");
    exit;
 }
+echo date('Y年m月d日 h:m A P');
 ?>
 <form id='main' action='' method='post' accept-charset='UTF-8'>
 <table id='main-table' border='0' cellpadding='0' cellspacing='0' class='tablesorter'> 
@@ -54,6 +55,8 @@ if(!$volunteer->DBLogin()){
 <th>电话</th>
 <th>微信</th>
 <th>QQ</th> 
+<th>计划接机总数</th>
+<th>已接人数</th>  
 </tr></thead><tbody>
 <?php
 $user_email = $user_rec['email'];
@@ -61,6 +64,7 @@ $level = $user_rec['level'];
 $qry = "Select * from $volunteer->tablename where level is null or level<$level";
 $result = mysql_query($qry,$volunteer->connection);
 $count = 0;
+$today = date('m/d');
 while($row = mysql_fetch_array($result) ) {
 	$count = $count + 1;
 	$email = $row['email'];
@@ -76,15 +80,20 @@ while($row = mysql_fetch_array($result) ) {
 	echo "<td>" . $row['cell'] . "</td>";
 	echo "<td>" . $row['wechat'] . "</td>";
 	echo "<td>" . $row['qq'] . "</td>";
+	$num_picked = mysql_result(mysql_query("select count(*) from $volunteer->table_stu
+		where volunteer='$email'"
+		,$volunteer->connection),0,0);
+	echo "<td>" . $num_picked . "</td>";
+	$num_picked = mysql_result(mysql_query("select count(*) from $volunteer->table_stu 
+		where volunteer='$email' and date<'$today'"
+		,$volunteer->connection),0,0);
+	echo "<td>" . $num_picked . "</td>";
 	//echo "<td style='width: 150px; border: 1px solid black;'>" . $row['email'] . "</td>";
 	//echo "<td>"."<input type='checkbox' name='check_list[]' value=$email >"."</td>";
 	echo "</tr>";
 
 }
 echo "</tbody></table>";
-//$msg = "是否继续？";
-//echo "<input type='submit' name='submit' value='提交(Submit)' onclick='return confirm($msg)' />";
-//echo "<p>*点击提交后，您和待接机的学生都会收到邮件</p>";
 echo "</form>";
 ?> 
 
