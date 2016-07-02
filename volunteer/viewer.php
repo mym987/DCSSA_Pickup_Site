@@ -37,6 +37,7 @@ if(!$volunteer->DBLogin()){
    $volunteer->HandleError("Database login failed!");
    exit;
 }
+echo date('Y年m月d日 h:m A P');
 ?>
 <form id='main' action='' method='post' accept-charset='UTF-8'>
 <table id='main-table' border='0' cellpadding='0' cellspacing='0' class='tablesorter'> 
@@ -57,7 +58,8 @@ if(!$volunteer->DBLogin()){
 </tr></thead><tbody>
 <?php
 $user_email = $volunteer->UserEmail();
-$qry = "Select * from $volunteer->table_stu where confirmcode='y' and volunteer='$user_email'";
+$today = date('m/d');
+$qry = "Select * from $volunteer->table_stu where confirmcode='y' and volunteer='$user_email' and date>='$today'";
 $result = mysql_query($qry,$volunteer->connection);
 $count = 0;
 while($row = mysql_fetch_array($result) ) {
@@ -83,9 +85,6 @@ while($row = mysql_fetch_array($result) ) {
 
 }
 echo "</tbody></table>";
-//$msg = "是否继续？";
-//echo "<input type='submit' name='submit' value='提交(Submit)' onclick='return confirm($msg)' />";
-//echo "<p>*点击提交后，您和待接机的学生都会收到邮件</p>";
 echo "</form>";
 ?> 
 

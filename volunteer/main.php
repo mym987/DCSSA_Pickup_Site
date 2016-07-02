@@ -38,6 +38,7 @@ if(!$volunteer->DBLogin()){
    $volunteer->HandleError("Database login failed!");
    exit;
 }
+echo date('Y年m月d日 h:m A P');
 echo "<form id='main' action='' method='post' accept-charset='UTF-8'>";
 echo "<table id='main-table' border='0' cellpadding='0' cellspacing='0' class='tablesorter'> 
 <thead><tr>
