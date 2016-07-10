@@ -31,6 +31,17 @@ if($user_rec['level'])
     echo "<p><a href='admin-view.php'>查看所有学生</a></p>";
     echo "<p><a href='admin-user-view.php'>查看所有志愿者</a></p>";
 }
+if(!$volunteer->DBLogin()){
+   $volunteer->HandleError("Database login failed!");
+   exit;
+}
+$today = date('m/d');
+$total = mysql_result(mysql_query("select count(*) from $volunteer->table_stu where confirmcode='y'"
+		,$volunteer->connection),0,0);
+$unpicked = mysql_result(mysql_query("select count(*) from $volunteer->table_stu where confirmcode='y' and volunteer is null and date >= '$today'"
+		,$volunteer->connection),0,0);
+echo "<br/>";
+echo "<p>总共有${total}名已确认的学生，还有${unpicked}名学生等待接机。感谢您为DCSSA做出的贡献！</p>";
 ?>
 <br><br><br>
 <p><a href='logout.php'>退出(Logout)</a></p>

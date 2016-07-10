@@ -54,7 +54,8 @@ echo "<table id='main-table' border='0' cellpadding='0' cellspacing='0' class='t
 <th>我要接这名学生</th>
 </tr></thead><tbody>";
 
-$qry = "Select * from $volunteer->table_stu where confirmcode='y' and volunteer is null";
+$today = date('m/d');
+$qry = "Select * from $volunteer->table_stu where confirmcode='y' and volunteer is null and date >= '$today'";
 $result = mysql_query($qry,$volunteer->connection);
 $count = 0;
 while($row = mysql_fetch_array($result) ) {
